@@ -5,7 +5,7 @@ import React from "react";
 
 export function Details(props){
   
-  console.log(props.id);
+  console.log("in deatils",props.id);
 
   const[description,setDescription]=useState("desc");
   return(
@@ -13,8 +13,11 @@ export function Details(props){
         <div >
                 
                 <div>
-                   <h1>Title: {props.id}</h1>
-                   <p>Description : {description}</p>
+                   <h1>Title: {props.id.title}</h1>
+                   <div>Address : {props.id.address}</div>
+                     <div>
+                         <img src={props.id.image} height={50} width={50}/>
+                     </div>
                 </div> 
             
         </div>

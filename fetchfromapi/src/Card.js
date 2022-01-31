@@ -8,8 +8,8 @@ export function Card(props){
   //console.log(props.Info);
 var a=true;
 //const[index,setIndex] = useState(true);
-  const gotoDetails=(id)=>{
-     // console.log("dtails id = ",props.id);
+  const gotoDetails=()=>{
+     console.log("dtails id = ",props.id);
      // a=false
      // setIndex(true);
     props.retunID(props.id);
@@ -44,6 +44,7 @@ var a=true;
                      
 
                      <div>Title: {props.title}</div>
+                     
                     <button onClick={gotoDetails}>Details</button> 
                     {/* {newdata}
                 </div> 

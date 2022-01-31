@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import {Card} from "./Card";
 import { Details } from "./Details";
 import {useNavigate} from "react-router-dom";
 
 var atitle;
+
 export const CardList =() => {
-    const[animetitle,setAnimeTitle]= useState([{id:2,title:"new"},{id:3,title:"old"}]);
+    var i=0;
+    const[animetitle,setAnimeTitle]= useState([]);
     //const[animetitle,setAnimeTitle]= useState([1,2,3]);
+
+    const[pageloader,setPageLoader]=useState(false);
+
      const Submitdata=()=>{
         fetch("https://top-anime.p.rapidapi.com/anime/3/5", {
             "method": "GET",
@@ -20,7 +25,7 @@ export const CardList =() => {
     .then(response => 
         response.json()
         .then((data)=>{
-            setAnimeTitle(data.map(a => a.title))
+            setAnimeTitle(data.map(a => a))
             console.log(data[0].title);
     })
     )
@@ -28,29 +33,49 @@ export const CardList =() => {
         console.error(err);
     });
         }
-    //Submitdata();
+    useEffect(()=>{
+        Submitdata();
+    },[])
+    
     const animeList = animetitle.map(an=>(
-        <Card key={an.id}
-        id={an.id}
+        <Card key={i}
+        id={i++}
         title={an.title}
-        retunID={retunID} /> 
+        address={an.address}
+        image={an.image}
+        retunID={retunID} 
+        />
+        
+         
     ));
  
    // const naviagte = useNavigate();
     function retunID(id){
         let index = animetitle.findIndex((obj) => obj.id === id);
-        
-        atitle= animetitle[index];
+        console.log("in list", id);
+        atitle= animetitle[id];
         console.log(atitle);
        // naviagte("/Details");
+       setPageLoader(true);
     }
 
-    //const[pageloader,setPageLoader]=useState(false);
+    
+if(!pageloader){
     return(
         <div>
             {animeList}
             {/* <Card Info={animetitle} /> */}
+
         </div>
         );
+    }
+    else{
+        return(
+            <div>
+               <Details id={atitle} />
+    
+            </div>
+            );
+    }
     
     };
