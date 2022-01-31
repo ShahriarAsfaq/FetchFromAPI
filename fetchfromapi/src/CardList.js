@@ -37,6 +37,8 @@ export const CardList =() => {
         Submitdata();
     },[])
     
+    animetitle.sort((a, b) => a.title.localeCompare(b.title));
+
     const animeList = animetitle.map(an=>(
         <Card key={i}
         id={i++}

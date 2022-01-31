@@ -1,6 +1,7 @@
 import {useContext, useState } from "react";
 import React from "react";
 import { Details } from "./Details";
+import "./Card.css";
 
 var idx;
 export function Card(props){
@@ -24,7 +25,7 @@ var a=true;
   if(a==true){
     return(
             
-        <div >
+        <div className="card">
              
                 {/* <div>
                      { props.Info.map(i =>(

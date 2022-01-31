@@ -16,6 +16,9 @@ export function Details(props){
                    <h1>Title: {props.id.title}</h1>
                    <div>Address : {props.id.address}</div>
                      <div>
+                         <p>Image :</p>
+                     </div>
+                     <div>
                          <img src={props.id.image} height={50} width={50}/>
                      </div>
                 </div> 
