@@ -1,34 +1,50 @@
 import React from "react";
 import { useState } from "react";
+import { CardList } from "./CardList";
 
+var btn;
 export const Home =() => {
-const[anime,setAnime]= useState([]);
- function Submitdata (){
-    fetch("https://game-prices.p.rapidapi.com/game/minecraft?region=us&type=game", {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "game-prices.p.rapidapi.com",
-            "x-rapidapi-key": "5babf243d7mshc6a1c221e1153fbp1e5257jsncb897a9793a7"
-        }
-    })
+const[currentPage,setCurrentpage]= useState(true);
+ 
+function allAnime(){
+    btn= 1;
+    setCurrentpage(false);
+}
+function naruto(){
+    btn = 2;
+    console.log("naruto pressed");
+    setCurrentpage(false);
+}
+function topAnime(){
+    btn= 3;
+    setCurrentpage(false);
+}
 
-.then(response => 
-    response.json()
-    .then((data)=>{
-    setAnime(data.stores.map(a => a.seller))
-	console.log(data.stores[0].seller);
-})
-)
-.catch(err => {
-	console.error(err);
-});
-    }
-Submitdata();
+if(currentPage){
 return(
     <div>
-        {anime}
+        <h1>Select What You want to Watch</h1>
+    <div>
+        <button onClick={allAnime}>Fetch All Anime in this site</button>
+        
+    </div>
+    <div>
+        <button onClick={naruto}>Fetch All Naruto Informations</button>
+    </div>
+    <div>
+        <button onClick={topAnime}>Fetch Top Rated Informations</button>
+    </div>
     </div>
 
+
     );
+}
+else{
+    return(
+        <div>
+            <CardList btn={btn} />
+        </div>
+    );
+}
 
 };

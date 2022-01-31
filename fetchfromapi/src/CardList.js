@@ -5,16 +5,26 @@ import { Details } from "./Details";
 import {useNavigate} from "react-router-dom";
 
 var atitle;
-
-export const CardList =() => {
+var url1;
+export const CardList = (props) => {
     var i=0;
+    console.log(props.btn);
     const[animetitle,setAnimeTitle]= useState([]);
     //const[animetitle,setAnimeTitle]= useState([1,2,3]);
+    if(props.btn==1){
+     url1 = "https://top-anime.p.rapidapi.com/all";
+    }
+    else if(props.btn==2){
+         url1 = "https://top-anime.p.rapidapi.com/anime/naruto";
+    }
+    else if(props.btn==3){
+         url1 = "https://top-anime.p.rapidapi.com/anime/3/5";
+    }
 
     const[pageloader,setPageLoader]=useState(false);
 
      const Submitdata=()=>{
-        fetch("https://top-anime.p.rapidapi.com/anime/3/5", {
+        fetch(url1, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "top-anime.p.rapidapi.com",
