@@ -26,6 +26,7 @@ var a=true;
     return(
             
         <div className="card">
+            <h1>All list Sorted in Alphabetical Order</h1>
              
                 {/* <div>
                      { props.Info.map(i =>(
